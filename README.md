@@ -1,18 +1,18 @@
-# Puentes Shop — Tienda Online Flask + PostgreSQL
+# Puentes Shop
 
-Proyecto académico de una tienda online desarrollado con **Flask**, **PostgreSQL**, **SQLAlchemy** y **Bootstrap**.
+Proyecto académico de una tienda online desarrollada con **Flask, PostgreSQL, SQLAlchemy y Bootstrap**.
 
 ## Funcionalidades
 
-- POO con herencia y polimorfismo: `Producto`, `ProductoFisico`, `ProductoDigital` y `ProductoPerecible`.
-- CRUD completo de productos.
-- Registro, login y logout con contraseñas encriptadas.
-- Roles `cliente` y `admin` con rutas protegidas.
-- Carrito de compras mediante sesión.
-- Subida de imágenes con `request.files` y `secure_filename`.
-- Imagen predeterminada para productos sin fotografía.
-- Mensajes `flash()` con alertas de Bootstrap.
-- Diseño responsive con Bootstrap 5.
+- POO con herencia y polimorfismo.
+- CRUD de productos.
+- Registro, inicio y cierre de sesión.
+- Contraseñas encriptadas.
+- Roles `cliente` y `admin`.
+- Rutas protegidas.
+- Carrito de compras.
+- Subida de imágenes de productos.
+- Mensajes `flash()` y diseño responsive con Bootstrap.
 
 ## Instalación
 
@@ -22,7 +22,7 @@ python -m venv venv
 python -m pip install -r requirements.txt
 ```
 
-Copia `.env.example` como `.env` y configura tu conexión a PostgreSQL:
+Copia `.env.example` como `.env` y configura PostgreSQL.
 
 ```env
 DB_USER=postgres
@@ -33,39 +33,15 @@ DB_NAME=tienda_online
 SECRET_KEY=TU_CLAVE_SECRETA
 ```
 
-Crea la base de datos:
-
-```sql
-CREATE DATABASE tienda_online;
-```
-
-Si es una base nueva:
+Luego ejecuta:
 
 ```powershell
 python init_db.py
-```
-
-Si ya existe una base anterior, aplica la migración:
-
-```powershell
-psql -U postgres -d tienda_online -f migraciones/001_agregar_imagen.sql
-```
-
-## Administrador
-
-```powershell
 python crear_admin.py
-```
-
-Los usuarios registrados desde la web reciben el rol `cliente`. El script permite crear un usuario con rol `admin`.
-
-## Ejecutar
-
-```powershell
 python app.py
 ```
 
-Abrir:
+Abrir en:
 
 ```text
 http://127.0.0.1:5000
@@ -73,8 +49,22 @@ http://127.0.0.1:5000
 
 ## Evidencias
 
-Las capturas de funcionamiento pueden guardarse en `docs/capturas/`, incluyendo catálogo, detalle de producto, administrador, carrito, subida de imágenes, permisos y PostgreSQL.
+### Catálogo de productos
+
+![Catálogo de productos](screenshots/01_catalogo.png)
+
+### Detalle de producto
+
+![Detalle de producto](screenshots/02_detalle_producto.png)
+
+### Crear cuenta
+
+![Crear cuenta](screenshots/Crear_cuenta.png)
+
+### Inicio de sesión
+
+![Inicio de sesión](screenshots/login.png)
 
 ## Seguridad
 
-El archivo `.env` contiene credenciales locales y **no debe subirse a GitHub**. El proyecto incluye `.env.example` y `.gitignore`.
+El archivo `.env` contiene las credenciales locales y está excluido del repositorio mediante `.gitignore`.

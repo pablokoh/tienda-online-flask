@@ -27,6 +27,42 @@ os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 db.init_app(app)
 
 
+LEGACY_IMAGE_NAMES = {
+    "chuldesillasgamer.png": "silla_gamer.png",
+    "logitech g502 x.png": "logitech_g502_x.png",
+    "pcgaming pablo.jpg": "pc_gaming_pablo.jpg",
+    "umatecladogaming.png": "teclado_gaming.png",
+}
+
+
+def resolver_imagen(nombre_archivo):
+    """Retorna una imagen existente o la imagen predeterminada.
+
+    También reconoce los nombres originales de los recursos usados durante
+    la preparación del proyecto para evitar imágenes rotas si una base
+    anterior conservó esos nombres.
+    """
+    if not nombre_archivo:
+        return DEFAULT_IMAGE
+
+    nombre = os.path.basename(str(nombre_archivo).strip())
+    candidatos = [nombre]
+    normalizado = secure_filename(nombre)
+    if normalizado and normalizado not in candidatos:
+        candidatos.append(normalizado)
+
+    legado = LEGACY_IMAGE_NAMES.get(nombre.lower())
+    if legado:
+        candidatos.append(legado)
+
+    for candidato in candidatos:
+        ruta = os.path.join(app.config["UPLOAD_FOLDER"], candidato)
+        if os.path.isfile(ruta):
+            return candidato
+
+    return DEFAULT_IMAGE
+
+
 def login_requerido(vista):
     """Exige una sesión iniciada antes de ejecutar una vista."""
 
@@ -127,7 +163,7 @@ def construir_lineas_carrito():
 @app.context_processor
 def datos_globales():
     cantidad_carrito = sum(int(cantidad) for cantidad in obtener_carrito().values())
-    return {"cantidad_carrito": cantidad_carrito}
+    return {"cantidad_carrito": cantidad_carrito, "resolver_imagen": resolver_imagen}
 
 
 @app.route("/")

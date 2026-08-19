@@ -42,7 +42,7 @@ Esta auditoría contrasta el contenido preparado para entrega con la actividad *
 |---|---|---|
 | Bootstrap incluido | Cumple | Bootstrap 5.3.3 en `base.html`. |
 | Catálogo mejorado | Cumple | Cards, imagen, badges, precio, stock, estados hover y layout responsive. |
-| Identidad visual | Cumple | Marca `NEXORA Store`, CSS propio y paleta coherente. |
+| Identidad visual | Cumple | Marca `Puentes Shop`, CSS propio y paleta coherente. |
 | Íconos | Cumple | Bootstrap Icons. |
 | Navegación responsive | Cumple | Navbar con `navbar-toggler`. |
 | Feedback con `flash()` | Cumple | Alertas Bootstrap en `base.html`. |
@@ -71,8 +71,9 @@ El código y la estructura pueden auditarse sin una base PostgreSQL activa, pero
 5. Ejecutar `python crear_admin.py` para disponer de un usuario administrador.
 6. Iniciar `python app.py` y completar las pruebas del README.
 7. Revisar visualmente que las cuatro imágenes de demostración carguen correctamente en el navegador.
-8. Crear el repositorio de GitHub, añadir el `remote` y hacer `push`.
-9. Confirmar en GitHub que **`.env` no fue publicado**.
+8. Guardar las capturas reales en `docs/capturas/` siguiendo la guía incluida.
+9. Hacer `git add`, `commit` y `push` de las correcciones y evidencias.
+10. Confirmar en GitHub que **`.env` no fue publicado**.
 
 ## Observaciones fuera del alcance solicitado
 
@@ -81,3 +82,9 @@ No se implementan pagos, pedidos persistentes, checkout, CSRF avanzado, almacena
 ## Veredicto técnico
 
 A nivel de código y estructura, el proyecto queda preparado para cubrir los requisitos descritos de Semanas 1, 2 y 3, la mejora de subida de imágenes y la mejora visual. El único punto que no puede certificarse sin el entorno local es la **integración efectiva con tu instancia de PostgreSQL y la prueba end-to-end en navegador**.
+
+## Evidencias visuales recomendadas
+
+La consigna funcional queda cubierta por el código, pero para una entrega académica se recomienda acompañarla con evidencia de ejecución real. La guía completa está en `docs/capturas/README.md`.
+
+Las evidencias prioritarias son: catálogo con imágenes, detalle, cliente, administrador, subida de imagen, carrito, control de permisos y PostgreSQL.

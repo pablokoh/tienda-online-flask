@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Puentes shop — Tienda Online con Flask + PostgreSQL
+=======
+# Puentes Shop — Tienda Online con Flask + PostgreSQL
+>>>>>>> 744c6a7 (Correcines  Finales)
 
 Proyecto académico de una tienda online desarrollado con **Flask**, **PostgreSQL**, **SQLAlchemy**, **POO con herencia y polimorfismo**, autenticación de usuarios, roles, CRUD de productos, carrito de compras y carga de imágenes.
 
@@ -37,7 +41,9 @@ Tienda_Online_Entrega/
 ├── migraciones/
 │   └── 001_agregar_imagen.sql
 ├── docs/
-│   └── AUDITORIA_FINAL.md
+│   ├── AUDITORIA_FINAL.md
+│   └── capturas/
+│       └── README.md
 ├── static/
 │   ├── css/
 │   │   └── styles.css
@@ -95,7 +101,7 @@ venv\Scripts\activate
 
 ```powershell
 python -m venv venv
-venv\Scripts\Activate.ps1
+.\venv\Scripts\Activate.ps1
 ```
 
 ### macOS / Linux
@@ -108,7 +114,7 @@ source venv/bin/activate
 ## 3. Instalar dependencias
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## 4. Crear el archivo `.env`
@@ -211,6 +217,26 @@ http://127.0.0.1:5000
 
 ---
 
+
+# Evidencias para la entrega
+
+La carpeta [`docs/capturas/`](docs/capturas/) está preparada para guardar las capturas reales de ejecución. Las capturas no se falsifican ni se generan desde el código: deben realizarse con Flask y PostgreSQL funcionando en tu equipo.
+
+Evidencias recomendadas:
+
+- Catálogo mostrando las imágenes correctamente.
+- Detalle de producto.
+- Sesión como cliente.
+- Sesión como administrador.
+- Creación o edición de producto con carga de imagen.
+- Carrito con productos y total.
+- Protección de una ruta administrativa frente a un cliente.
+- Consulta de PostgreSQL mostrando `tipo` e `imagen`.
+
+Consulta [`docs/capturas/README.md`](docs/capturas/README.md) para los nombres exactos de archivo y las consultas SQL sugeridas.
+
+---
+
 # Subir correctamente a GitHub
 
 Antes del primer commit, verifica que **`.env` no aparezca** en los archivos a subir.
@@ -243,6 +269,20 @@ git rm --cached .env
 Después vuelve a hacer commit.
 
 ---
+
+
+## Actualizar un repositorio de GitHub ya creado
+
+Si el repositorio remoto ya está configurado, después de copiar estas correcciones y las capturas ejecuta:
+
+```bash
+git status
+git add .
+git commit -m "Correcciones finales y evidencias de entrega"
+git push
+```
+
+Comprueba en GitHub que `.env`, `venv/` y `__pycache__/` no hayan sido publicados.
 
 # Roles y permisos
 

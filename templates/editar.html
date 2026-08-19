@@ -21,7 +21,7 @@
         {% endif %}
     </div>
     <div class="row align-items-center g-3 my-2">
-        <div class="col-sm-3"><img class="img-fluid rounded border" src="{{ url_for('static', filename='uploads/' ~ (producto.imagen or 'default_product.svg')) }}" alt="Imagen actual"></div>
+        <div class="col-sm-3"><img class="img-fluid rounded border" src="{{ url_for('static', filename='uploads/' ~ resolver_imagen(producto.imagen)) }}" alt="Imagen actual"></div>
         <div class="col">{% include "_campo_imagen.html" %}</div>
     </div>
     <button class="btn btn-brand" type="submit">Guardar cambios</button>

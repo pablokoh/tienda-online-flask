@@ -1,6 +1,3 @@
-
-# Puentes Shop — Tienda Online con Flask + PostgreSQL
-=======
 # Puentes shop — Tienda Online con Flask + PostgreSQL
 >>>>>>> 0e6bdcd1b5ae3a259494a3436d616c4d77080719
 

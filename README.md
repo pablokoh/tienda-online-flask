@@ -1,8 +1,12 @@
 <<<<<<< HEAD
 # Puentes shop — Tienda Online con Flask + PostgreSQL
+<<<<<<< HEAD
 =======
 # Puentes Shop — Tienda Online con Flask + PostgreSQL
 >>>>>>> 744c6a7 (Correcines  Finales)
+=======
+>>>>>>> 0e6bdcd1b5ae3a259494a3436d616c4d77080719
+>>>>>>> 9f225bad612a2be36f2ae95a98263e134c396e76
 
 Proyecto académico de una tienda online desarrollado con **Flask**, **PostgreSQL**, **SQLAlchemy**, **POO con herencia y polimorfismo**, autenticación de usuarios, roles, CRUD de productos, carrito de compras y carga de imágenes.
 

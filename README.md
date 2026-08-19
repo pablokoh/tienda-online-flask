@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Puentes Shop — Tienda Online con Flask + PostgreSQL
 =======
 # Puentes shop — Tienda Online con Flask + PostgreSQL

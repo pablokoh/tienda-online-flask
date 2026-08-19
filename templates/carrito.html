@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Carrito{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-end mb-4">
+    <div><p class="text-uppercase small fw-bold text-secondary mb-1">Compra</p><h1 class="mb-0">Tu carrito</h1></div>
+    <a class="btn btn-outline-secondary" href="{{ url_for('inicio') }}">Seguir comprando</a>
+</div>
+
+{% if lineas %}
+<div class="card cart-shell"><div class="card-body p-0">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead><tr><th class="ps-4">Producto</th><th>Precio</th><th style="min-width: 170px;">Cantidad</th><th>Subtotal</th><th></th></tr></thead>
+            <tbody>
+            {% for linea in lineas %}
+            <tr>
+                <td class="ps-4"><div class="d-flex align-items-center gap-3"><img src="{{ url_for('static', filename='uploads/' ~ (linea.producto.imagen or 'default_product.svg')) }}" alt="" width="64" height="64" class="rounded border object-fit-contain bg-white"><div><strong>{{ linea.producto.nombre }}</strong><div class="small text-muted">{{ linea.producto.codigo }}</div></div></div></td>
+                <td>${{ "%.2f"|format(linea.producto.precio_final()) }}</td>
+                <td><form class="d-flex gap-2" method="post" action="{{ url_for('actualizar_carrito', producto_id=linea.producto.id) }}"><input class="form-control form-control-sm" type="number" name="cantidad" min="1" max="{{ linea.producto.stock }}" value="{{ linea.cantidad }}"><button class="btn btn-sm btn-outline-primary" type="submit">Actualizar</button></form></td>
+                <td class="fw-bold">${{ "%.2f"|format(linea.subtotal) }}</td>
+                <td class="pe-4"><form method="post" action="{{ url_for('eliminar_del_carrito', producto_id=linea.producto.id) }}"><button class="btn btn-sm btn-outline-danger" type="submit" title="Eliminar"><i class="bi bi-trash"></i></button></form></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 p-4 border-top">
+        <form method="post" action="{{ url_for('vaciar_carrito') }}"><button class="btn btn-outline-danger" type="submit">Vaciar carrito</button></form>
+        <div class="text-sm-end"><span class="text-muted me-2">Total</span><strong class="price fs-3">${{ "%.2f"|format(total) }}</strong></div>
+    </div>
+</div></div>
+{% else %}
+<div class="card cart-shell"><div class="card-body text-center py-5"><i class="bi bi-cart-x display-4 text-secondary"></i><h2 class="h4 mt-3">Tu carrito está vacío</h2><p class="text-muted">Agrega productos desde el catálogo.</p><a class="btn btn-brand" href="{{ url_for('inicio') }}">Ver catálogo</a></div></div>
+{% endif %}
+{% endblock %}

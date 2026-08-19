@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block titulo %}{{ producto.nombre }} · NEXORA Store{% endblock %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-outline-secondary mb-4"><i class="bi bi-arrow-left me-1"></i>Volver al catálogo</a>
+
+<div class="card detail-shell">
+    <div class="card-body p-4 p-lg-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <img class="product-detail-image" src="{{ url_for('static', filename='uploads/' ~ (producto.imagen or 'default_product.svg')) }}" alt="{{ producto.nombre }}">
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge badge-soft">{{ producto.tipo|capitalize }}</span>
+                    <small class="text-muted">Código {{ producto.codigo }}</small>
+                </div>
+                <h1 class="display-6 fw-bold">{{ producto.nombre }}</h1>
+                <p class="price display-6">${{ "%.2f"|format(producto.precio_final()) }}</p>
+                <p class="text-muted">Stock disponible: <strong>{{ producto.stock }}</strong></p>
+
+                <div class="border rounded-4 p-3 mb-4 bg-light">
+                    {% if producto.tipo == "fisico" %}
+                    <p class="mb-1"><strong>Peso:</strong> {{ producto.peso_kg }} kg</p>
+                    <p class="mb-0"><strong>Envío por kg:</strong> ${{ "%.2f"|format(producto.costo_envio_por_kg or 0) }}</p>
+                    {% elif producto.tipo == "digital" %}
+                    <p class="mb-0"><strong>Licencia:</strong> {{ producto.licencia|capitalize }}</p>
+                    {% elif producto.tipo == "perecible" %}
+                    <p class="mb-0"><strong>Días para vencer:</strong> {{ producto.dias_para_vencer }}</p>
+                    {% endif %}
+                </div>
+
+                {% if session.get('usuario_id') and producto.stock > 0 %}
+                <form class="row g-2 mb-3" action="{{ url_for('agregar_carrito', producto_id=producto.id) }}" method="post">
+                    <div class="col-4 col-sm-3">
+                        <input class="form-control" type="number" name="cantidad" value="1" min="1" max="{{ producto.stock }}" aria-label="Cantidad">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-brand w-100" type="submit"><i class="bi bi-cart-plus me-1"></i>Agregar al carrito</button>
+                    </div>
+                </form>
+                {% elif not session.get('usuario_id') %}
+                <a class="btn btn-brand w-100 mb-3" href="{{ url_for('login') }}">Inicia sesión para comprar</a>
+                {% endif %}
+
+                {% if session.get('usuario_rol') == 'admin' %}
+                <div class="d-flex gap-2 pt-3 border-top">
+                    <a class="btn btn-outline-primary" href="{{ url_for('editar_producto', producto_id=producto.id) }}"><i class="bi bi-pencil me-1"></i>Editar</a>
+                    <form action="{{ url_for('eliminar_producto', producto_id=producto.id) }}" method="post" onsubmit="return confirm('¿Seguro que quieres desactivar este producto?');">
+                        <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash me-1"></i>Desactivar</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

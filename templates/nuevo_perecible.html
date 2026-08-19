@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Nuevo producto perecible{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-8">
+<a href="{{ url_for('inicio') }}" class="btn btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Volver</a>
+<div class="card form-shell"><div class="card-body p-4 p-lg-5">
+<h1 class="h2 mb-4">Nuevo producto perecible</h1>
+<form method="post" enctype="multipart/form-data">
+    <div class="row g-3">
+        <div class="col-md-4"><label class="form-label">Código</label><input class="form-control" name="codigo" required maxlength="20"></div>
+        <div class="col-md-8"><label class="form-label">Nombre</label><input class="form-control" name="nombre" required maxlength="150"></div>
+        <div class="col-md-6"><label class="form-label">Precio base ($)</label><input class="form-control" type="number" step="0.01" min="0" name="precio_base" required></div>
+        <div class="col-md-6"><label class="form-label">Stock inicial</label><input class="form-control" type="number" min="0" name="stock" required></div>
+        <div class="col-12"><label class="form-label">Días para vencer</label><input class="form-control" type="number" min="0" name="dias_para_vencer" required><div class="form-text">3 días o menos: 50% de descuento. 7 días o menos: 20%.</div></div>
+    </div>
+    <div class="mt-3">{% include "_campo_imagen.html" %}</div>
+    <button class="btn btn-brand" type="submit">Crear producto</button>
+</form>
+</div></div></div></div>
+{% endblock %}

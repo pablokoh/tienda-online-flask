@@ -1,4 +1,4 @@
-# NEXORA Store — Tienda Online con Flask + PostgreSQL
+# Puentes shop — Tienda Online con Flask + PostgreSQL
 
 Proyecto académico de una tienda online desarrollado con **Flask**, **PostgreSQL**, **SQLAlchemy**, **POO con herencia y polimorfismo**, autenticación de usuarios, roles, CRUD de productos, carrito de compras y carga de imágenes.
 
